@@ -79,12 +79,12 @@ html
 	var list = label.siblings('.acnav__list');
 
 	if ( parent.hasClass('is-open') ) {
-     $(".acnav__label").removeClass("icon-new");
+    label.removeClass("icon-new");
 		list.slideUp('200');
 		parent.removeClass('is-open');
 	}
 	else {
-       $(".acnav__label").addClass("icon-new");
+     label.addClass("icon-new");
 		list.slideDown('200');
 		parent.addClass('is-open');
 	}
