@@ -79,11 +79,13 @@ html
 	var list = label.siblings('.acnav__list');
 
 	if ( parent.hasClass('is-open') ) {
-		list.slideUp('fast');
+     $(".acnav__label").removeClass("icon-new");
+		list.slideUp('200');
 		parent.removeClass('is-open');
 	}
 	else {
-		list.slideDown('fast');
+       $(".acnav__label").addClass("icon-new");
+		list.slideDown('200');
 		parent.addClass('is-open');
 	}
 });
