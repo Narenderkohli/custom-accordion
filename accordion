@@ -10,21 +10,17 @@ html
   <a class="toggles new-sub"  href="{{ link.url }}">{{ link.title }}</a>
   
 {% if link.links != blank %}
-  <ul class="acnav__list acnav__list--level2">
-    {% for child_link in link.links %}  
+  <ul  class="acnav__list acnav__list--level2">
+   
+    {% for child_link in link.links %} 
+    
     <li class="">
-      
-<a class="acnav__link acnav__link--level2" href="{{ child_link.url }}">{{ child_link.title }}</a>
-    {% if child_link.links != blank %}
-     <ul class="acnav__list acnav__list--level3">
-      {% for grandchild_link in child_link.links %}  
-        <li><a class="acnav__link acnav__link--level3" href= "{{ grandchild_link.url }}">{{ grandchild_link.title }}</a></li>
-      {% endfor %}
-      </ul>
-    {% endif %}   
-       
-    </li>
-    {% endfor %}
+  <a class="acnav__link acnav__link--level2" href="{{ child_link.url }}">{{ child_link.title }}</a>
+ </li>
+  <li class="">
+ <a class="acnav__link acnav__link--level2" href="{{ child_link.url }}">{{ child_link.title }}</a>
+ </li>
+ {% endfor %}
   </ul> 
 {% endif %} 
 </li>
@@ -35,10 +31,32 @@ html
 {% if link.links != blank %}
   <ul class="acnav__list acnav__list--level2">
     {% for child_link in link.links %}  
+    {% if child_link.links == blank %}
     <li>
       
- <a class="acnav__link acnav__link--level2"href="{{ child_link.url }}">{{ child_link.title }}</a>
+ <a class="toggles new-sub"href="{{ child_link.url }}">{{ child_link.title }}</a>
+       <ul class="acnav__list acnav__list--level3">
+      {% for grand_child_link in child_link.links %}  
+      <li>
+     <a class="acnav__link acnav__link--level3"href="{{ grand_child_link.url }}">{{ grand_child_link.title }}</a>
+    </li>
+    {% endfor %}
+       </ul>
   </li>
+    {% else %}
+     <li class="has-children">
+      
+ <a class="acnav__link acnav__link--level2"href="{{ child_link.url }}">{{ child_link.title }}</a>
+       <span class="acnav__label">+</span>
+       <ul class="acnav__list acnav__list--level3">
+      {% for grand_child_link in child_link.links %}  
+      <li class="">
+     <a class="acnav__link acnav__link--level3" href="{{ grand_child_link.url }}">{{ grand_child_link.title }}</a>
+    </li>
+    {% endfor %}
+       </ul>
+  </li>
+     {% endif %}
     {% endfor %}
   </ul> 
 {% endif %} 
@@ -48,6 +66,7 @@ html
 </ul>
   
   </div>
+
   ===========================
   end html
   ============================
@@ -58,6 +77,8 @@ html
   ==============
   
   
+   <style>
+  
     .acnav__list--level2 {
     display: none;
   
@@ -65,6 +86,11 @@ html
       display: block;
     }
   }
+  ul.acnav__list.acnav__list--level3 {
+    display: none;
+    
+}
+</style>
   
   ========================
   end
